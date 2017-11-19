@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace NewCardsFramework
@@ -18,17 +20,7 @@ namespace NewCardsFramework
         /// 
         /// </summary>
         public Guid UniqueTournamentName;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TimeSpan BlindTimes;
-
-        /// <summary>
-        /// A list of all the BlindLevels
-        /// </summary>
-        public List<BlindLevel> BlindLevels;
-
+        
         /// <summary>
         /// The Decimal amount that a play would buy in for
         /// </summary>
@@ -60,7 +52,10 @@ namespace NewCardsFramework
                 else return "Rebuys not Permitted";
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public PokerTournamentStructure TournamentStructure;
 
 
         /// <summary>
@@ -84,13 +79,59 @@ namespace NewCardsFramework
         public PokerTournament(decimal buyIn, List<BlindLevel> levels, bool allowRebuy,TimeSpan blindTimes, decimal rebuy = 0m,int numberOfRebuysAllowed = 0)
         {
             BuyIn = buyIn;
-            BlindLevels = levels;
-            BlindTimes = blindTimes;
+            TournamentStructure = new PokerTournamentStructure
+            {
+                BlindLevels = levels,
+                BlindTimes = blindTimes,
+                RebuyAllowed = allowRebuy
+            };
             if (allowRebuy)
             {
                 NumberOfRebuysAllowed = numberOfRebuysAllowed;
                 Rebuy = rebuy;
+                
             }
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class PokerTournamentStructure
+    {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string StructureName;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid StructureId
+        {
+            get
+            {
+                using (var md5 = new MD5CryptoServiceProvider())
+                {
+                    return new Guid(md5.ComputeHash(Encoding.UTF8.GetBytes(StructureName)));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TimeSpan BlindTimes;
+
+        /// <summary>
+        /// A list of all the BlindLevels
+        /// </summary>
+        public List<BlindLevel> BlindLevels;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RebuyAllowed;
     }
 }
