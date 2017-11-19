@@ -1,4 +1,4 @@
-﻿namespace NewCardsFramework
+﻿namespace NewCardsFramework.Poker
 {
     /// <summary>
     /// 

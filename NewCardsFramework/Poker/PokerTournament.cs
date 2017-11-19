@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace NewCardsFramework
+namespace NewCardsFramework.Poker
 {
     /// <summary>
     /// 
