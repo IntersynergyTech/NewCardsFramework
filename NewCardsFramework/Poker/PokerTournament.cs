@@ -3,27 +3,32 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
+using ProtoBuf;
 
 namespace NewCardsFramework.Poker
 {
     /// <summary>
     /// 
     /// </summary>
+    [ProtoContract]
     public class PokerTournament
     {
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(1)]
         public string PokerTournamentName;
 
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(2)]
         public Guid UniqueTournamentName;
-        
+
         /// <summary>
         /// The Decimal amount that a play would buy in for
         /// </summary>
+        [ProtoMember(3)]
         public decimal BuyIn;
         /// <summary>
         /// Property derived from the BuyIn, formatted to GBP
@@ -33,10 +38,12 @@ namespace NewCardsFramework.Poker
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(4)]
         public decimal Rebuy;
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(5)]
         public int NumberOfRebuysAllowed;
         /// <summary>
         /// Returns a formatted string based on the number of rebuys allowed
@@ -55,6 +62,7 @@ namespace NewCardsFramework.Poker
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(6)]
         public PokerTournamentStructure TournamentStructure;
 
 
@@ -97,12 +105,14 @@ namespace NewCardsFramework.Poker
     /// <summary>
     /// 
     /// </summary>
+    [ProtoContract]
     public class PokerTournamentStructure
     {
 
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(1)]
         public string StructureName;
 
         /// <summary>
@@ -122,16 +132,27 @@ namespace NewCardsFramework.Poker
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(2)]
         public TimeSpan BlindTimes;
 
         /// <summary>
         /// A list of all the BlindLevels
         /// </summary>
+        [ProtoMember(3)]
         public List<BlindLevel> BlindLevels;
 
         /// <summary>
         /// 
         /// </summary>
+        [ProtoMember(4)]
         public bool RebuyAllowed;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public PokerTournamentStructure()
+        {
+            
+        }
     }
 }
