@@ -14,6 +14,19 @@ namespace NewCardsFramework.Poker
         [ProtoMember(1)]
         public int SmallBlind;
         /// <summary>
+        /// 
+        /// </summary>
+        public int SmallBlindUI => SmallBlind;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int BigBlindUI => BigBlind;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int AnteUI => Ante;
+
+        /// <summary>
         /// The big blind for this level
         /// </summary>
         [ProtoMember(2)]
