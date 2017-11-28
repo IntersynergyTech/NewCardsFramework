@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Owen Hamer</Authors>
+    <Company>Intersynergy Technologies Ltd</Company>
+    <Product>NewCardsFramework</Product>
+    <Description></Description>
+    <SignAssembly>false</SignAssembly>
+    <PackageProjectUrl>https://github.com/IntersynergyTech</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/IntersynergyTech/NewCardsFramework</RepositoryUrl>
+    <NeutralLanguage />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
