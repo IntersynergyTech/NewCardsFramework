@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using System;
+using ProtoBuf;
 
 namespace NewCardsFramework.Poker
 {
@@ -13,6 +14,25 @@ namespace NewCardsFramework.Poker
         /// </summary>
         [ProtoMember(1)]
         public int SmallBlind;
+
+
+        /// <summary>
+        /// The big blind for this level
+        /// </summary>
+        [ProtoMember(2)]
+        public int BigBlind;
+        /// <summary>
+        /// The ante for this level
+        /// </summary>
+        [ProtoMember(3)]
+        public int Ante;
+        [ProtoMember(4)]
+        public TimeSpan LevelTime;
+        #region Properties
+        /// <summary>
+        /// A friendly way to describe the blind level
+        /// </summary>
+        public string BlindLevelText => Ante != 0 ? $"Blinds {SmallBlind}/{BigBlind} Ante{Ante}" : $"Blinds {SmallBlind}/{BigBlind}";
         /// <summary>
         /// 
         /// </summary>
@@ -25,22 +45,7 @@ namespace NewCardsFramework.Poker
         /// 
         /// </summary>
         public int AnteUI => Ante;
-
-        /// <summary>
-        /// The big blind for this level
-        /// </summary>
-        [ProtoMember(2)]
-        public int BigBlind;
-        /// <summary>
-        /// The ante for this level
-        /// </summary>
-        [ProtoMember(3)]
-        public int Ante;
-        /// <summary>
-        /// A friendly way to describe the blind level
-        /// </summary>
-        public string BlindLevelText => Ante != 0 ? $"Blinds {SmallBlind}/{BigBlind} Ante{Ante}" : $"Blinds {SmallBlind}/{BigBlind}";
-
+        #endregion
         /// <summary>
         /// 
         /// </summary>
