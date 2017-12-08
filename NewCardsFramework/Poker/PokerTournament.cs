@@ -33,33 +33,28 @@ namespace NewCardsFramework.Poker
 
 
         /// <summary>
-        /// Returns a formatted string based on the number of rebuys allowed
-        /// </summary>
-        public string FriendlyRebuy
-        {
-            get
-            {
-                if (Rebuy != 0m && NumberOfRebuysAllowed != 0)
-                {
-                    return string.Format(new System.Globalization.CultureInfo("en-GB"), $"{Rebuy:C}");
-                }
-                else return "Rebuys not Permitted";
-            }
-        }
-        /// <summary>
         /// 
         /// </summary>
         [ProtoMember(6)]
         public PokerTournamentStructure TournamentStructure;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(5)]
         public List<PokerTournamentRegistration> RegistrationList;
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(8)]
         public int RebuyCount;
 
 
         #region Properties
+        /// <summary>
+        /// 
+        /// </summary>
         public int TotalChipCount
         {
             get
@@ -96,9 +91,18 @@ namespace NewCardsFramework.Poker
         /// </summary>
         public string FriendlyBuyIn => string.Format(new System.Globalization.CultureInfo("en-GB"), $"{BuyIn:C}");
 
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal TotalPrizePool => PlayerCount * BuyIn;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool AddOnAllowed => TournamentStructure.AddOnAllowed;
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RebuyAllowed => TournamentStructure.RebuyAllowed;
         #endregion
 
@@ -129,20 +133,22 @@ namespace NewCardsFramework.Poker
                 BlindTimes = blindTimes,
                 RebuyAllowed = allowRebuy
             };
-            if (allowRebuy)
-            {
-                NumberOfRebuysAllowed = numberOfRebuysAllowed;
-                Rebuy = rebuy;
-                
-            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="registeredPlayer"></param>
         public void AddPlayer(Player registeredPlayer)
         {
             if(RegistrationList.Any(x => x.Player == registeredPlayer && x.Active)) throw new PlayerAlreadyRegisteredException();
             var registration = new PokerTournamentRegistration(registeredPlayer);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="knockedOutPlayer"></param>
         public void KnockPlayerOut(Player knockedOutPlayer)
         {
             foreach (var player in RegistrationList.Where(x => x.Player == knockedOutPlayer))
@@ -151,25 +157,52 @@ namespace NewCardsFramework.Poker
             }
         }
     }
-
+    /// <summary>
+    /// Class which contains a Registration for a tournament
+    /// </summary>
     [ProtoContract]
     public class PokerTournamentRegistration
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(1)]
         public Player Player;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(2)]
         public bool PaidBuyIn = true;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(3)]
         public bool HadRebuy = false;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(4)]
         public bool HadAddOn = false;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(5)]
         public int RebuyCount = 0;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(6)]
         public int AddOnCount = 0;
+        /// <summary>
+        /// 
+        /// </summary>
         [ProtoMember(7)]
         public bool Active = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newPlayer"></param>
         public PokerTournamentRegistration(Player newPlayer)
         {
             Player = newPlayer;
@@ -177,14 +210,12 @@ namespace NewCardsFramework.Poker
             Active = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public PokerTournamentRegistration()
         {
             
         }
-    }
-
-    public class PlayerAlreadyRegisteredException : Exception
-    {
-        
     }
 }

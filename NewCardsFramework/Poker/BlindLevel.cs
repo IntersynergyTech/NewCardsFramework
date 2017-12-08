@@ -26,6 +26,9 @@ namespace NewCardsFramework.Poker
         /// </summary>
         [ProtoMember(3)]
         public int Ante;
+        /// <summary>
+        /// The Time this Level lasts for
+        /// </summary>
         [ProtoMember(4)]
         public TimeSpan LevelTime;
         #region Properties

@@ -63,9 +63,21 @@ namespace NewCardsFramework.Poker
         [ProtoMember(7)]
         public int RebuyStack;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(8)]
         public int NumberOfRebuysAllowed;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(9)]
         public bool AddOnAllowed;
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(11)]
         public int AddonStack;
         
 
