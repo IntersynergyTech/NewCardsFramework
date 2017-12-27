@@ -88,5 +88,11 @@ namespace NewCardsFramework.Poker
         {
             
         }
+
+        public BlindLevel GetNextLevel(BlindLevel currentLevel)
+        {
+            var index = BlindLevels.IndexOf(currentLevel);
+            return index + 1 > BlindLevels.Count ? currentLevel : BlindLevels[index + 1];
+        }
     }
 }
