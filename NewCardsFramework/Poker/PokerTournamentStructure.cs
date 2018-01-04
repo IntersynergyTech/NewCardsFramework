@@ -79,8 +79,12 @@ namespace NewCardsFramework.Poker
         /// </summary>
         [ProtoMember(11)]
         public int AddonStack;
-        
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(12)]
+        public bool ReEntriesAllowed;
         /// <summary>
         /// 
         /// </summary>

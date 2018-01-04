@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27102.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewCardsFramework", "NewCardsFramework\NewCardsFramework.csproj", "{B0C65FFD-2302-4DC2-882D-26D5540E19B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsFramework.Tests", "CardsFramework.Tests\CardsFramework.Tests.csproj", "{40715347-EB27-437A-B6E8-187894EFA28E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B0C65FFD-2302-4DC2-882D-26D5540E19B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0C65FFD-2302-4DC2-882D-26D5540E19B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0C65FFD-2302-4DC2-882D-26D5540E19B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40715347-EB27-437A-B6E8-187894EFA28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40715347-EB27-437A-B6E8-187894EFA28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40715347-EB27-437A-B6E8-187894EFA28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40715347-EB27-437A-B6E8-187894EFA28E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
