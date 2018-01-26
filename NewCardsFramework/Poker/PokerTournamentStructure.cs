@@ -93,6 +93,11 @@ namespace NewCardsFramework.Poker
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentLevel"></param>
+        /// <returns></returns>
         public BlindLevel GetNextLevel(BlindLevel currentLevel)
         {
             var index = BlindLevels.IndexOf(currentLevel);
