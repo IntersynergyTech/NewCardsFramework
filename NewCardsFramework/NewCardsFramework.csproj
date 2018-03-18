@@ -1,36 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Owen Hamer</Authors>
     <Company>Intersynergy Technologies Ltd</Company>
     <Product>NewCardsFramework</Product>
-    <Description></Description>
+    <Description>
+    </Description>
     <SignAssembly>false</SignAssembly>
     <PackageProjectUrl>https://github.com/IntersynergyTech</PackageProjectUrl>
     <RepositoryUrl>https://github.com/IntersynergyTech/NewCardsFramework</RepositoryUrl>
     <NeutralLanguage />
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\NewCardsFramework.xml</DocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\NewCardsFramework.xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="NewFolder\**" />
     <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="NewFolder\**" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="protobuf-net" Version="2.3.3" />
   </ItemGroup>
-
 </Project>
