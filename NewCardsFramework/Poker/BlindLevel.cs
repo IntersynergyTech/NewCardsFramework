@@ -7,15 +7,13 @@ namespace NewCardsFramework.Poker
     /// 
     /// </summary>
     [ProtoContract]
-    public class BlindLevel
+    public class BlindLevel : IComparable<BlindLevel>, IComparable
     {
         /// <summary>
         /// The small blind for this level
         /// </summary>
         [ProtoMember(1)]
         public int SmallBlind;
-
-
         /// <summary>
         /// The big blind for this level
         /// </summary>
@@ -36,10 +34,20 @@ namespace NewCardsFramework.Poker
         /// A friendly way to describe the blind level
         /// </summary>
         public string BlindLevelText => Ante != 0 ? $"Blinds {SmallBlind}/{BigBlind} Ante{Ante}" : $"Blinds {SmallBlind}/{BigBlind}";
+
         /// <summary>
         /// 
         /// </summary>
-        public int SmallBlindUI => SmallBlind;
+        public string BlindLevelUI => $"{SmallBlind}/{BigBlind}/{Ante}";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int SmallBlindUI
+        {
+            get => SmallBlind;
+            set => SmallBlind = value;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -49,6 +57,8 @@ namespace NewCardsFramework.Poker
         /// </summary>
         public int AnteUI => Ante;
         #endregion
+
+        #region Constructors
         /// <summary>
         /// 
         /// </summary>
@@ -63,11 +73,32 @@ namespace NewCardsFramework.Poker
         /// <param name="small"></param>
         /// <param name="big"></param>
         /// <param name="ante"></param>
-        public BlindLevel(int small, int big, int ante)
+        public BlindLevel(int small, int big, int ante) 
         {
             SmallBlind = small;
             BigBlind = big;
             Ante = ante;
+        }
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(BlindLevel other)
+        {
+            return this.SmallBlind.CompareTo(other.SmallBlind);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            return this.SmallBlind.CompareTo(((BlindLevel)obj).SmallBlind);
         }
     }
 }

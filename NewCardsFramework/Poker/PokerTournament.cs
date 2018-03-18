@@ -49,8 +49,7 @@ namespace NewCardsFramework.Poker
         /// </summary>
         [ProtoMember(8)]
         public int RebuyCount;
-
-
+        
         #region Properties
         /// <summary>
         /// 
@@ -112,7 +111,7 @@ namespace NewCardsFramework.Poker
         [JsonConstructor]
         public PokerTournament()
         {
-            
+            RegistrationList = new List<PokerTournamentRegistration>();
         }
 
         /// <summary>
@@ -143,6 +142,7 @@ namespace NewCardsFramework.Poker
         {
             if(RegistrationList.Any(x => x.Player == registeredPlayer && x.Active)) throw new PlayerAlreadyRegisteredException();
             var registration = new PokerTournamentRegistration(registeredPlayer);
+            RegistrationList.Add(registration);
         }
 
         /// <summary>
@@ -151,71 +151,23 @@ namespace NewCardsFramework.Poker
         /// <param name="knockedOutPlayer"></param>
         public void KnockPlayerOut(Player knockedOutPlayer)
         {
-            foreach (var player in RegistrationList.Where(x => x.Player == knockedOutPlayer))
+            var players = RegistrationList.Where(x => x.Player == knockedOutPlayer && x.Active).ToList();
+            if (players.Count == 0) throw new PlayerNotFoundException();
+            foreach (var player in players)
             {
                 player.Active = false;
             }
         }
     }
+
     /// <summary>
-    /// Class which contains a Registration for a tournament
+    /// Exception is thrown when the player that is specified can't be found
     /// </summary>
-    [ProtoContract]
-    public class PokerTournamentRegistration
+    public class PlayerNotFoundException : Exception
     {
         /// <summary>
         /// 
         /// </summary>
-        [ProtoMember(1)]
-        public Player Player;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(2)]
-        public bool PaidBuyIn = true;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(3)]
-        public bool HadRebuy = false;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(4)]
-        public bool HadAddOn = false;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(5)]
-        public int RebuyCount = 0;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(6)]
-        public int AddOnCount = 0;
-        /// <summary>
-        /// 
-        /// </summary>
-        [ProtoMember(7)]
-        public bool Active = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newPlayer"></param>
-        public PokerTournamentRegistration(Player newPlayer)
-        {
-            Player = newPlayer;
-            PaidBuyIn = true;
-            Active = true;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PokerTournamentRegistration()
-        {
-            
-        }
+        public override string Message { get; } = "Player Not Found";
     }
 }

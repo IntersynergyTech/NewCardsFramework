@@ -79,14 +79,29 @@ namespace NewCardsFramework.Poker
         /// </summary>
         [ProtoMember(11)]
         public int AddonStack;
-        
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [ProtoMember(12)]
+        public bool ReEntriesAllowed;
         /// <summary>
         /// 
         /// </summary>
         public PokerTournamentStructure()
         {
             
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentLevel"></param>
+        /// <returns></returns>
+        public BlindLevel GetNextLevel(BlindLevel currentLevel)
+        {
+            var index = BlindLevels.IndexOf(currentLevel);
+            return index + 1 > BlindLevels.Count ? currentLevel : BlindLevels[index + 1];
         }
     }
 }
