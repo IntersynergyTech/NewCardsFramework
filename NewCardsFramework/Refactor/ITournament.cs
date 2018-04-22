@@ -1,6 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 namespace NewCardsFramework.Refactor
 {
@@ -11,9 +12,15 @@ namespace NewCardsFramework.Refactor
     public interface ITournament
     {
         string TournamentName { get; set; }
-        TournamentType TournamentTypeValue { get; set; }
+        TournamentType TournamentTypeValue { get; }
         List<IRegistration> Players { get; set; }
         decimal CurrentEntry { get; set; }
+        IBlindLevelCollection Blinds { get; set; }
+        IGame CurrentGameType { get; }
+        void RegisterPlayer(IPlayer registeredPlayer);
+        void KnockoutPlayer(IPlayer currentPlayer);
+        IEnumerable<IPlayer> GetCurrentPlayers();
+        bool PlayerIsRegistered(IPlayer playerToCheck);
     }
 
     public enum TournamentType
@@ -39,10 +46,10 @@ namespace NewCardsFramework.Refactor
 
     public interface IRegistration
     {
-        IPlayer CurrentPlayer { get; set; }
+        int RegPlayerId { get; set; }
         bool Active { get; set; }
     }
-
+    
     public interface IGame
     {
         string Name { get; set; }
@@ -53,6 +60,7 @@ namespace NewCardsFramework.Refactor
     public interface IBlindLevelCollection : IEnumerable<IBlindLevel>
     {
         bool HasBlinds { get; set; }
+        
     }
 
     public interface IBlindLevel
@@ -61,5 +69,6 @@ namespace NewCardsFramework.Refactor
         decimal BigBlind { get; set; }
         decimal Ante { get; set; }
     }
+
 #pragma warning restore 1591
 }

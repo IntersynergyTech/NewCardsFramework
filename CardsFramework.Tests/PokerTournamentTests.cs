@@ -78,5 +78,6 @@ namespace CardsFramework.Tests
             tournament.AddPlayer(player2);
             Assert.AreEqual(tournament.TotalChipCount,expectedStack);
         }
+        
     }
 }
